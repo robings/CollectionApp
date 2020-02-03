@@ -2,7 +2,7 @@
 
 require_once ('functions.php');
 
-
+//call code that pulls collection from db
 
 ?>
 
@@ -23,6 +23,10 @@ require_once ('functions.php');
     </div>
 </section>
 <section class='collection'>
+    <!-- this section will be replaced by a php echo -->
+    <?php
+
+    ?>
     <article>
         <div class='item'>
             <h2>N700</h2>
@@ -56,6 +60,7 @@ require_once ('functions.php');
             </ul>
         </div>
     </article>
+    <!-- end of php echo section -->
 </section>
 
 </body>

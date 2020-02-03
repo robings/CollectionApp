@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.29)
 # Database: Shinkansen
-# Generation Time: 2020-02-03 13:39:14 +0000
+# Generation Time: 2020-02-03 14:02:52 +0000
 # ************************************************************
 
 
@@ -28,10 +28,10 @@ DROP TABLE IF EXISTS `shinkansenData`;
 CREATE TABLE `shinkansenData` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `series` varchar(20) DEFAULT NULL,
-  `topSpeedMPH` smallint(4) DEFAULT NULL,
-  `topSpeedKMH` smallint(4) DEFAULT NULL,
+  `topSpeedMPH` smallint(4) unsigned DEFAULT NULL,
+  `topSpeedKMH` smallint(4) unsigned DEFAULT NULL,
   `introducedYR` year(4) DEFAULT NULL,
-  `withdrawn` tinyint(1) DEFAULT '0',
+  `withdrawn` tinyint(1) unsigned DEFAULT '0',
   `withdrawnYR` year(4) DEFAULT NULL,
   `imgURL` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)

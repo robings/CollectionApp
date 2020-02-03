@@ -1,3 +1,27 @@
 * {
     box-sizing: border-box;
 }
+
+html {
+    font-family: 'Helvetica Neue', 'April', 'sans-serif';
+}
+
+section {
+    width: 80%;
+    margin: 0 auto;
+}
+
+section div {
+    background-color: #333333;
+    background: url('images/japan-969331_1920.jpg');
+    background-position: center;
+    background-size: 100%;
+    text-align: center;
+    padding: 40px 0;
+    min-height: 200px
+}
+
+h1 {
+    color: #ff4500;
+    text-transform: uppercase;
+}

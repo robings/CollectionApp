@@ -4,12 +4,13 @@
 
 html {
     font-family: 'Helvetica Neue', 'April', 'sans-serif';
+    font-size: 16px;
 }
 
 section {
     width: 80%;
     margin: 0 auto;
-    background-color: #333333;
+    background-color: #1C2527;
 }
 
 .heroImage {
@@ -18,7 +19,7 @@ section {
     background-position: center;
     background-size: 100%;
     text-align: center;
-    padding: 40px 0;
+    padding: 40px 10px;
     min-height: 200px
 }
 
@@ -36,7 +37,7 @@ h2 {
 }
 
 article {
-    border: 1px solid #999999;
+    border-top: 1px solid #999999;
     padding: 20px 10px;
     color: #ffffff;
 }
@@ -49,15 +50,46 @@ article {
     width: 50%;
     border: 1px solid #ff4500;
     float: left;
-    margin-right: 30px;
+    margin-right: 40px;
 }
 
 .collection ul {
     float: left;
-    padding: 0 0 0 40px;
+    padding: 0;
     font-size: 1.5rem;
 }
 
 span {
     color: #ff4500;
 }
+
+@media screen and (max-width: 962px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 10px;
+    }
+    .collection img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .heroImage {
+        min-height: 100px;
+    }
+    h1 {
+        font-size: 1.75rem;
+    }
+}
+

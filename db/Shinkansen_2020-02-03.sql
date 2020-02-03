@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.29)
 # Database: Shinkansen
-# Generation Time: 2020-02-03 14:02:52 +0000
+# Generation Time: 2020-02-03 16:27:27 +0000
 # ************************************************************
 
 
@@ -37,6 +37,17 @@ CREATE TABLE `shinkansenData` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+LOCK TABLES `shinkansenData` WRITE;
+/*!40000 ALTER TABLE `shinkansenData` DISABLE KEYS */;
+
+INSERT INTO `shinkansenData` (`id`, `series`, `topSpeedMPH`, `topSpeedKMH`, `introducedYR`, `withdrawn`, `withdrawnYR`, `imgURL`)
+VALUES
+	(1,'0',135,220,'1964',1,'2008','images/japan-974730_1920.jpg'),
+	(2,'500',185,300,'1997',0,NULL,'images/bullet-train-66091_1280.jpg'),
+	(3,'N700',185,300,'2007',0,NULL,'images/bullet-train-1918480_1280.jpg');
+
+/*!40000 ALTER TABLE `shinkansenData` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 

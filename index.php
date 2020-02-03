@@ -6,7 +6,8 @@ require_once ('functions.php');
 
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang='en-GB'>
 <head>
    <title>Shinkansen</title>
     <meta name="viewport" content="width=device-width" />

@@ -13,14 +13,23 @@ function var_dumpPre($variabletoDump) {
     echo '</pre>';
 }
 
+/**
+ * get the collection data from the db
+ * @param $db - the database connection
+ * @return mixed - the data from the database in a assoc array
+ */
 function fetchData($db) {
     $query = $db->prepare('SELECT `id`, `series`, `introducedYR`, `topSpeedKMH`, `topSpeedMPH`, `withdrawn`, `withdrawnYR`, `imgURL` FROM `shinkansens`;');
     $query->execute();
     return $query->fetchAll();
 }
 
-
-function collectionBox($shinkansen) {
+/**
+ * function to build the display box for a collection item
+ * @param array $shinkansen - array for one row from the db
+ * @return string - the html to display
+ */
+function collectionBox(array $shinkansen): string {
     $shinkansenBox = '<article><div class=\'item\'>';
     $shinkansenBox .= '<h2>Series ' . $shinkansen['series'] . '</h2>';
     $shinkansenBox .= '<img src=\'' . $shinkansen['imgURL'] . '\' alt=\'' . $shinkansen['series'] . 'Bullet Train\' />';

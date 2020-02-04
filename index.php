@@ -6,11 +6,16 @@ require_once 'class.php';
 
 $db = connectdb();
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-$query = $db->prepare('SELECT `id`, `series`, `topSpeedKMH`, `topSpeedMPH`, `withdrawn`, `withdrawnYR`, `imgURL` FROM `shinkansens`;');
+$query = $db->prepare('SELECT `id`, `series`, `introducedYR`, `topSpeedKMH`, `topSpeedMPH`, `withdrawn`, `withdrawnYR`, `imgURL` FROM `shinkansens`;');
 $query->execute();
 $data = $query->fetchAll();
 
-var_dump($data);
+
+var_dumpPre($data);
+
+//test object instantiation
+$shinkansenOne = new Shinkansen(0, 1964, 200, 135, 1, 'images/image.img', 2008);
+ var_dumpPre($shinkansenOne);
 
 //call code that pulls collection from db
 

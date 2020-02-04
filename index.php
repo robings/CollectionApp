@@ -6,16 +6,34 @@ require_once 'class.php';
 
 $db = connectdb();
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-$query = $db->prepare('SELECT `id`, `series`, `introducedYR`, `topSpeedKMH`, `topSpeedMPH`, `withdrawn`, `withdrawnYR`, `imgURL` FROM `shinkansens`;');
-$query->execute();
-$data = $query->fetchAll();
+
+$shinkansens = fetchData($db);
+
+$display = '';
+foreach($shinkansens as $shinkansen) {
+    //$shinkansenName='series' . $shinkansen['series'];
+    $shinkansenBox = '<article><div class=\'item\'>';
+    $shinkansenBox .= '<h2>Series ' . $shinkansen['series'] . '</h2>';
+    $shinkansenBox .= '<img src=\'' . $shinkansen['imgURL'] . '\' alt=\'' . $shinkansen['series'] . 'Bullet Train\' />';
+    $shinkansenBox .= '<ul>';
+    $shinkansenBox .= '<li><span>Introduced:</span> ' . $shinkansen['introducedYR'] . '</li>';
+    $shinkansenBox .= '<li><span>Top speed:</span> ' . $shinkansen['topSpeedKMH'] . 'km/h (' . $shinkansen['topSpeedMPH'] . 'mph)</li>';
+    if ($shinkansen['withdrawn']==1) {
+        $shinkansenBox .= '<li><span>Withdrawn:</span> ' . $shinkansen['withdrawnYR'] . '</li>';
+    } else {
+        $shinkansenBox .= '<li><span>Withdrawn:</span> still in service</li>';
+    }
+    $shinkansenBox .= '</ul></div></article>';
+
+    $display .= $shinkansenBox;
+}
 
 
-var_dumpPre($data);
+//var_dumpPre($shinkansens);
 
 //test object instantiation
-$shinkansenOne = new Shinkansen(0, 1964, 200, 135, 1, 'images/image.img', 2008);
- var_dumpPre($shinkansenOne);
+
+
 
 //call code that pulls collection from db
 
@@ -40,41 +58,9 @@ $shinkansenOne = new Shinkansen(0, 1964, 200, 135, 1, 'images/image.img', 2008);
 <section class='collection'>
     <!-- this section will be replaced by a php echo -->
     <?php
-
+        echo $display;
     ?>
-    <article>
-        <div class='item'>
-            <h2>N700</h2>
-            <img src='images/bullet-train-1918480_1280.jpg' alt='N700 Bullet Train'/>
-            <ul>
-                <li><span>Introduced:</span> 2007</li>
-                <li><span>Top speed:</span> 300km/h (185 mph)</li>
-                <li><span>Withdrawn:</span> still in service</li>
-            </ul>
-        </div>
-    </article>
-    <article>
-        <div class='item'>
-            <h2>N700</h2>
-            <img src='images/bullet-train-1918480_1280.jpg' alt='N700 Bullet Train'/>
-            <ul>
-                <li><span>Introduced:</span> 2007</li>
-                <li><span>Top speed:</span> 300km/h (185 mph)</li>
-                <li><span>Withdrawn:</span> still in service</li>
-            </ul>
-        </div>
-    </article>
-    <article>
-        <div class='item'>
-            <h2>N700</h2>
-            <img src='images/bullet-train-1918480_1280.jpg' alt='N700 Bullet Train'/>
-            <ul>
-                <li><span>Introduced:</span> 2007</li>
-                <li><span>Top speed:</span> 300km/h (185 mph)</li>
-                <li><span>Withdrawn:</span> still in service</li>
-            </ul>
-        </div>
-    </article>
+
     <!-- end of php echo section -->
 </section>
 

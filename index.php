@@ -1,6 +1,13 @@
 <?php
 
-require_once ('functions.php');
+require_once 'functions.php';
+require_once 'dbConnect.php';
+
+$db = connectdb();
+$query = $db->prepare('SELECT `id`, `series`, `topSpeedKMH`, `topSpeedMPH`, `withdrawn`, `withdrawnYR`, `imgURL` FROM `shinkansens`;');
+$query->execute();
+$data = $query->fetchAll();
+
 
 //call code that pulls collection from db
 

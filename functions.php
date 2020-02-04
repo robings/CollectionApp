@@ -30,6 +30,13 @@ function fetchData($db) {
  * @return string - the html to display
  */
 function collectionBox(array $shinkansen): string {
+    if (!array_key_exists('series', $shinkansen) || (!array_key_exists('imgURL', $shinkansen)) || (!array_key_exists('introducedYR', $shinkansen))) {
+        return 'error! missing expected array key(s): function collectionBox';
+    } elseif (!array_key_exists('topSpeedKMH', $shinkansen) || (!array_key_exists('topSpeedMPH', $shinkansen)) || (!array_key_exists('withdrawn', $shinkansen))) {
+        return 'error! missing expected array key(s): function collectionBox';
+    } elseif (!array_key_exists('withdrawnYR', $shinkansen)) {
+        return 'error! missing expected array key(s): function collectionBox';
+    }
     $shinkansenBox = '<article><div class=\'item\'>';
     $shinkansenBox .= '<h2>Series ' . $shinkansen['series'] . '</h2>';
     $shinkansenBox .= '<img src=\'' . $shinkansen['imgURL'] . '\' alt=\'Series ' . $shinkansen['series'] . ' Bullet Train\' />';

@@ -92,18 +92,19 @@ span {
     section {
         width: 100%;
     }
-    .collection img {
-        width: 100%;
-    }
+
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 528px) {
     .heroImage {
         min-height: 100px;
         padding-top: 25px;
     }
     h1 {
         font-size: 1.75rem;
+    }
+    .collection img {
+        width: 100%;
     }
 }
 

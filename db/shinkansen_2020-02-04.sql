@@ -6,8 +6,8 @@
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.7.29)
-# Database: Shinkansen
-# Generation Time: 2020-02-03 14:02:52 +0000
+# Database: shinkansen
+# Generation Time: 2020-02-04 09:22:15 +0000
 # ************************************************************
 
 
@@ -20,12 +20,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table shinkansenData
+# Dump of table shinkansens
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `shinkansenData`;
+DROP TABLE IF EXISTS `shinkansens`;
 
-CREATE TABLE `shinkansenData` (
+CREATE TABLE `shinkansens` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `series` varchar(20) DEFAULT NULL,
   `topSpeedMPH` smallint(4) unsigned DEFAULT NULL,
@@ -37,6 +37,17 @@ CREATE TABLE `shinkansenData` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+LOCK TABLES `shinkansens` WRITE;
+/*!40000 ALTER TABLE `shinkansens` DISABLE KEYS */;
+
+INSERT INTO `shinkansens` (`id`, `series`, `topSpeedMPH`, `topSpeedKMH`, `introducedYR`, `withdrawn`, `withdrawnYR`, `imgURL`)
+VALUES
+	(1,'0',135,220,'1964',1,'2008','images/japan-974730_1920.jpg'),
+	(2,'500',185,300,'1997',0,NULL,'images/bullet-train-66091_1280.jpg'),
+	(3,'N700',185,300,'2007',0,NULL,'images/bullet-train-1918480_1280.jpg');
+
+/*!40000 ALTER TABLE `shinkansens` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 

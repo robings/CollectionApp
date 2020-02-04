@@ -1,8 +1,17 @@
 <?php
 
-require_once ('functions.php');
+require_once 'functions.php';
+require_once 'dbConnect.php';
+
+$db = connectdb();
 
 
+$shinkansens = fetchData($db);
+
+$display = '';
+foreach($shinkansens as $shinkansen) {
+    $display .= collectionBox($shinkansen);
+}
 
 ?>
 
@@ -13,50 +22,29 @@ require_once ('functions.php');
     <meta name="viewport" content="width=device-width" />
     <link rel='stylesheet' type='text/css' href='normalize.css' />
     <link rel='stylesheet' type='text/css' href='styles.css' />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
-<section>
+<header>
     <div class='heroImage'>
         <h1>Shinkansen - Japanese Bullet Train Collection</h1>
     </div>
-</section>
+</header>
 <section class='collection'>
-    <article>
-        <div class='item'>
-            <h2>N700</h2>
-            <img src='images/bullet-train-1918480_1280.jpg' alt='N700 Bullet Train'/>
-            <ul>
-                <li><span>Introduced:</span> 2007</li>
-                <li><span>Top speed:</span> 300km/h (185 mph)</li>
-                <li><span>Withdrawn:</span> still in service</li>
-            </ul>
-        </div>
-    </article>
-    <article>
-        <div class='item'>
-            <h2>N700</h2>
-            <img src='images/bullet-train-1918480_1280.jpg' alt='N700 Bullet Train'/>
-            <ul>
-                <li><span>Introduced:</span> 2007</li>
-                <li><span>Top speed:</span> 300km/h (185 mph)</li>
-                <li><span>Withdrawn:</span> still in service</li>
-            </ul>
-        </div>
-    </article>
-    <article>
-        <div class='item'>
-            <h2>N700</h2>
-            <img src='images/bullet-train-1918480_1280.jpg' alt='N700 Bullet Train'/>
-            <ul>
-                <li><span>Introduced:</span> 2007</li>
-                <li><span>Top speed:</span> 300km/h (185 mph)</li>
-                <li><span>Withdrawn:</span> still in service</li>
-            </ul>
-        </div>
-    </article>
+    <!-- this section will be replaced by a php echo -->
+    <?php
+        echo $display;
+    ?>
+
+    <!-- end of php echo section -->
 </section>
 
 </body>
 
 </html>
+
+<?php
+//vardumps for debugging
+
+//var_dumpPre($shinkansens);

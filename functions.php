@@ -32,7 +32,7 @@ function fetchData($db) {
 function collectionBox(array $shinkansen): string {
     $shinkansenBox = '<article><div class=\'item\'>';
     $shinkansenBox .= '<h2>Series ' . $shinkansen['series'] . '</h2>';
-    $shinkansenBox .= '<img src=\'' . $shinkansen['imgURL'] . '\' alt=\'' . $shinkansen['series'] . 'Bullet Train\' />';
+    $shinkansenBox .= '<img src=\'' . $shinkansen['imgURL'] . '\' alt=\'Series ' . $shinkansen['series'] . ' Bullet Train\' />';
     $shinkansenBox .= '<ul>';
     $shinkansenBox .= '<li><span>Introduced:</span> ' . $shinkansen['introducedYR'] . '</li>';
     $shinkansenBox .= '<li><span>Top speed:</span> ' . $shinkansen['topSpeedKMH'] . 'km/h (' . $shinkansen['topSpeedMPH'] . 'mph)</li>';

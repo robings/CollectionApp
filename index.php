@@ -48,4 +48,4 @@ foreach($shinkansens as $shinkansen) {
 <?php
 //vardumps for debugging
 
-//var_dumpPre($shinkansens);
+var_dumpPre($shinkansens);

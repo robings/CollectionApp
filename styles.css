@@ -10,7 +10,7 @@ html {
 section {
     width: 80%;
     margin: 0 auto;
-    background-color: #1C2527;
+    background-color: #ffffff;
 }
 
 .heroImage {
@@ -24,7 +24,7 @@ section {
 }
 
 h1, h2 {
-    color: #ff4500;
+    color: #254378;
     text-transform: uppercase;
 }
 
@@ -39,7 +39,7 @@ h2 {
 article {
     border-top: 1px solid #999999;
     padding: 20px 10px;
-    color: #ffffff;
+    color: #7C4537;
 }
 
 .item {
@@ -48,7 +48,7 @@ article {
 
 .collection img {
     width: 50%;
-    border: 1px solid #ff4500;
+    border: 1px solid #254378;
     float: left;
     margin-right: 40px;
 }
@@ -60,7 +60,7 @@ article {
 }
 
 span {
-    color: #ff4500;
+    color: #254378;
 }
 
 @media screen and (max-width: 962px) {

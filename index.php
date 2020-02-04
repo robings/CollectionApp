@@ -26,11 +26,11 @@ foreach($shinkansens as $shinkansen) {
 </head>
 
 <body>
-<section>
+<header>
     <div class='heroImage'>
         <h1>Shinkansen - Japanese Bullet Train Collection</h1>
     </div>
-</section>
+</header>
 <section class='collection'>
     <!-- this section will be replaced by a php echo -->
     <?php
@@ -47,4 +47,4 @@ foreach($shinkansens as $shinkansen) {
 <?php
 //vardumps for debugging
 
-var_dumpPre($shinkansens);
+//var_dumpPre($shinkansens);

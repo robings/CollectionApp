@@ -1,7 +1,6 @@
 <?php
 
 require_once 'dbConnect.php';
-require_once 'class.php';
 
 /**
  * function to call a var dump with pre tags

@@ -13,4 +13,14 @@ class FunctionTests extends TestCase
         $case= collectionBox($input);
         $this->assertEquals($expected, $case);
     }
+    public function testCollectionBoxMalformed() {
+        $this->expectException(TypeError::class);
+        $input = 1;
+        $case = collectionBox($input);
+    }
+    public function testCollectionBoxMalformed2() {
+        $this->expectException(TypeError::class);
+        $input = 'tee hee hee';
+        $case = collectionBox($input);
+    }
 }

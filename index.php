@@ -4,7 +4,7 @@ require_once 'functions.php';
 require_once 'dbConnect.php';
 
 $db = connectdb();
-$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
 
 $shinkansens = fetchData($db);
 

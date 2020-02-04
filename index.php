@@ -8,9 +8,9 @@ $db = connectdb();
 
 $shinkansens = fetchData($db);
 
-$display = '';
+$trains = '';
 foreach($shinkansens as $shinkansen) {
-    $display .= collectionBox($shinkansen);
+    $trains .= displayTrain($shinkansen);
 }
 
 ?>
@@ -32,19 +32,9 @@ foreach($shinkansens as $shinkansen) {
     </div>
 </header>
 <section class='collection'>
-    <!-- this section will be replaced by a php echo -->
-    <?php
-        echo $display;
-    ?>
-
-    <!-- end of php echo section -->
+    <?php echo $trains; ?>
 </section>
 
 </body>
 
 </html>
-
-<?php
-//vardumps for debugging
-
-//var_dumpPre($shinkansens);

@@ -1,21 +1,11 @@
 <?php
 
-require_once 'dbConnect.php';
-
-/**
- * function to call a var dump with pre tags
- * @param $variabletoDump - the variable to be dumped
- */
-function var_dumpPre($variabletoDump) {
-    echo '<pre>';
-    var_dump($variabletoDump);
-    echo '</pre>';
-}
-
 /**
  * get the collection data from the db
+ *
  * @param $db - the database connection
- * @return mixed - the data from the database in a assoc array
+ *
+ * @return array - the data from the database in a assoc array
  */
 function fetchData($db) {
     $query = $db->prepare('SELECT `id`, `series`, `introducedYR`, `topSpeedKMH`, `topSpeedMPH`, `withdrawn`, `withdrawnYR`, `imgURL` FROM `shinkansens`;');
@@ -25,10 +15,12 @@ function fetchData($db) {
 
 /**
  * function to build the display box for a collection item
+ *
  * @param array $shinkansen - array for one row from the db
+ *
  * @return string - the html to display
  */
-function collectionBox(array $shinkansen): string {
+function displayTrain(array $shinkansen): string {
     if (!array_key_exists('series', $shinkansen) || (!array_key_exists('imgURL', $shinkansen)) || (!array_key_exists('introducedYR', $shinkansen))) {
         return 'error! missing expected array key(s): function collectionBox';
     } elseif (!array_key_exists('topSpeedKMH', $shinkansen) || (!array_key_exists('topSpeedMPH', $shinkansen)) || (!array_key_exists('withdrawn', $shinkansen))) {

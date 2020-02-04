@@ -4,10 +4,12 @@ require_once 'functions.php';
 require_once 'dbConnect.php';
 
 $db = connectdb();
+$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $query = $db->prepare('SELECT `id`, `series`, `topSpeedKMH`, `topSpeedMPH`, `withdrawn`, `withdrawnYR`, `imgURL` FROM `shinkansens`;');
 $query->execute();
 $data = $query->fetchAll();
 
+var_dump($data);
 
 //call code that pulls collection from db
 

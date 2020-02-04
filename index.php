@@ -11,31 +11,8 @@ $shinkansens = fetchData($db);
 
 $display = '';
 foreach($shinkansens as $shinkansen) {
-    //$shinkansenName='series' . $shinkansen['series'];
-    $shinkansenBox = '<article><div class=\'item\'>';
-    $shinkansenBox .= '<h2>Series ' . $shinkansen['series'] . '</h2>';
-    $shinkansenBox .= '<img src=\'' . $shinkansen['imgURL'] . '\' alt=\'' . $shinkansen['series'] . 'Bullet Train\' />';
-    $shinkansenBox .= '<ul>';
-    $shinkansenBox .= '<li><span>Introduced:</span> ' . $shinkansen['introducedYR'] . '</li>';
-    $shinkansenBox .= '<li><span>Top speed:</span> ' . $shinkansen['topSpeedKMH'] . 'km/h (' . $shinkansen['topSpeedMPH'] . 'mph)</li>';
-    if ($shinkansen['withdrawn']==1) {
-        $shinkansenBox .= '<li><span>Withdrawn:</span> ' . $shinkansen['withdrawnYR'] . '</li>';
-    } else {
-        $shinkansenBox .= '<li><span>Withdrawn:</span> still in service</li>';
-    }
-    $shinkansenBox .= '</ul></div></article>';
-
-    $display .= $shinkansenBox;
+    $display .= collectionBox($shinkansen);
 }
-
-
-//var_dumpPre($shinkansens);
-
-//test object instantiation
-
-
-
-//call code that pulls collection from db
 
 ?>
 
@@ -67,3 +44,8 @@ foreach($shinkansens as $shinkansen) {
 </body>
 
 </html>
+
+<?php
+//vardumps for debugging
+
+//var_dumpPre($shinkansens);

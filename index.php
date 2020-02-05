@@ -26,7 +26,7 @@ $trains = displayTrains($shinkansens);
 <header>
     <div class='heroImage'>
         <h1>Shinkansen - Japanese Bullet Train Collection</h1>
-        <div class='linkMover'><a href='addForm.php'>Add</a></div>
+        <div class='navLink'><a href='addForm.php'>Add</a></div>
     </div>
 </header>
 <section class='collection'>

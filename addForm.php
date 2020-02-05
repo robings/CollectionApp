@@ -21,7 +21,7 @@ $db = connectdb();
 <header>
     <div class='heroImage'>
         <h1>Shinkansen - Japanese Bullet Train Collection</h1>
-        <div class='linkMover'><a href='index.php'>Home</a></div>
+        <div class='navLink'><a href='index.php'>Home</a></div>
     </div>
 </header>
 <section>

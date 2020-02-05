@@ -17,9 +17,9 @@ $trains = displayTrains($shinkansens);
 <head>
    <title>Shinkansen</title>
     <meta name='viewport' content='width=device-width' />
+    <link href='https://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
     <link rel='stylesheet' type='text/css' href='normalize.css' />
     <link rel='stylesheet' type='text/css' href='styles.css' />
-    <link href='https://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
 </head>
 
 <body>

@@ -65,7 +65,10 @@ function validateYear(int $year): bool {
 }
 
 function validateUrl(string $url): bool {
-    if (file_exists($url)) {
+    if ((strpos($url,'`') !== false) || (strpos($url, '&') !== false) || (strpos($url, '$') !== false)) {
+        echo 'exiting due to characters';
+        return false;
+    } elseif (file_exists($url)) {
         return true;
     }
     return false;

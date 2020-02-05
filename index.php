@@ -5,13 +5,10 @@ require_once 'dbConnect.php';
 
 $db = connectdb();
 
+$shinkansens = getAllTrains($db);
 
-$shinkansens = fetchData($db);
+$trains = displayTrains($shinkansens);
 
-$trains = '';
-foreach($shinkansens as $shinkansen) {
-    $trains .= displayTrain($shinkansen);
-}
 
 ?>
 
@@ -19,10 +16,10 @@ foreach($shinkansens as $shinkansen) {
 <html lang='en-GB'>
 <head>
    <title>Shinkansen</title>
-    <meta name="viewport" content="width=device-width" />
+    <meta name='viewport' content='width=device-width' />
     <link rel='stylesheet' type='text/css' href='normalize.css' />
     <link rel='stylesheet' type='text/css' href='styles.css' />
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
 </head>
 
 <body>

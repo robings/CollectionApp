@@ -8,7 +8,7 @@
  * @return array - the data from the database in a assoc array
  */
 function fetchData($db) {
-    $query = $db->prepare('SELECT `id`, `series`, `introducedYR`, `topSpeedKMH`, `topSpeedMPH`, `withdrawn`, `withdrawnYR`, `imgURL` FROM `shinkansens`;');
+    $query = $db->prepare('SELECT `id`, `series`, `introducedYr`, `topSpeedKmh`, `topSpeedMph`, `withdrawn`, `withdrawnYr`, `imgUrl` FROM `shinkansens`;');
     $query->execute();
     return $query->fetchAll();
 }
@@ -21,21 +21,21 @@ function fetchData($db) {
  * @return string - the html to display
  */
 function displayTrain(array $shinkansen): string {
-    if (!array_key_exists('series', $shinkansen) || (!array_key_exists('imgURL', $shinkansen)) || (!array_key_exists('introducedYR', $shinkansen))) {
+    if (!array_key_exists('series', $shinkansen) || (!array_key_exists('imgUrl', $shinkansen)) || (!array_key_exists('introducedYr', $shinkansen))) {
         return 'error! missing expected array key(s): function collectionBox';
-    } elseif (!array_key_exists('topSpeedKMH', $shinkansen) || (!array_key_exists('topSpeedMPH', $shinkansen)) || (!array_key_exists('withdrawn', $shinkansen))) {
+    } elseif (!array_key_exists('topSpeedKmh', $shinkansen) || (!array_key_exists('topSpeedMph', $shinkansen)) || (!array_key_exists('withdrawn', $shinkansen))) {
         return 'error! missing expected array key(s): function collectionBox';
-    } elseif (!array_key_exists('withdrawnYR', $shinkansen)) {
+    } elseif (!array_key_exists('withdrawnYr', $shinkansen)) {
         return 'error! missing expected array key(s): function collectionBox';
     }
     $shinkansenBox = '<article><div class=\'item\'>';
     $shinkansenBox .= '<h2>Series ' . $shinkansen['series'] . '</h2>';
-    $shinkansenBox .= '<img src=\'' . $shinkansen['imgURL'] . '\' alt=\'Series ' . $shinkansen['series'] . ' Bullet Train\' />';
+    $shinkansenBox .= '<img src=\'' . $shinkansen['imgUrl'] . '\' alt=\'Series ' . $shinkansen['series'] . ' Bullet Train\' />';
     $shinkansenBox .= '<ul>';
-    $shinkansenBox .= '<li><span>Introduced:</span> ' . $shinkansen['introducedYR'] . '</li>';
-    $shinkansenBox .= '<li><span>Top speed:</span> ' . $shinkansen['topSpeedKMH'] . 'km/h (' . $shinkansen['topSpeedMPH'] . 'mph)</li>';
+    $shinkansenBox .= '<li><span>Introduced:</span> ' . $shinkansen['introducedYr'] . '</li>';
+    $shinkansenBox .= '<li><span>Top speed:</span> ' . $shinkansen['topSpeedKmh'] . 'km/h (' . $shinkansen['topSpeedMph'] . 'mph)</li>';
     if ($shinkansen['withdrawn']==1) {
-        $shinkansenBox .= '<li><span>Withdrawn:</span> ' . $shinkansen['withdrawnYR'] . '</li>';
+        $shinkansenBox .= '<li><span>Withdrawn:</span> ' . $shinkansen['withdrawnYr'] . '</li>';
     } else {
         $shinkansenBox .= '<li><span>Withdrawn:</span> still in service</li>';
     }

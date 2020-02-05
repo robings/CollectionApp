@@ -6,8 +6,8 @@
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.7.29)
-# Database: shinkansen
-# Generation Time: 2020-02-04 09:22:15 +0000
+# Database: robin_collection_shinkansen
+# Generation Time: 2020-02-05 09:05:39 +0000
 # ************************************************************
 
 
@@ -27,20 +27,20 @@ DROP TABLE IF EXISTS `shinkansens`;
 
 CREATE TABLE `shinkansens` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `series` varchar(20) DEFAULT NULL,
-  `topSpeedMPH` smallint(4) unsigned DEFAULT NULL,
-  `topSpeedKMH` smallint(4) unsigned DEFAULT NULL,
-  `introducedYR` year(4) DEFAULT NULL,
-  `withdrawn` tinyint(1) unsigned DEFAULT '0',
-  `withdrawnYR` year(4) DEFAULT NULL,
-  `imgURL` varchar(500) DEFAULT NULL,
+  `series` varchar(20) NOT NULL DEFAULT '',
+  `topSpeedMph` smallint(4) unsigned NOT NULL,
+  `topSpeedKmh` smallint(4) unsigned NOT NULL,
+  `introducedYr` year(4) NOT NULL,
+  `withdrawn` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `withdrawnYr` year(4) DEFAULT NULL,
+  `imgUrl` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `shinkansens` WRITE;
 /*!40000 ALTER TABLE `shinkansens` DISABLE KEYS */;
 
-INSERT INTO `shinkansens` (`id`, `series`, `topSpeedMPH`, `topSpeedKMH`, `introducedYR`, `withdrawn`, `withdrawnYR`, `imgURL`)
+INSERT INTO `shinkansens` (`id`, `series`, `topSpeedMph`, `topSpeedKmh`, `introducedYr`, `withdrawn`, `withdrawnYr`, `imgUrl`)
 VALUES
 	(1,'0',135,220,'1964',1,'2008','images/japan-974730_1920.jpg'),
 	(2,'500',185,300,'1997',0,NULL,'images/bullet-train-66091_1280.jpg'),

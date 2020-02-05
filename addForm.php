@@ -5,6 +5,8 @@ require_once 'dbConnect.php';
 
 $db = connectdb();
 
+//process if there are messages, repopulate form if $_POST exists
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +27,7 @@ $db = connectdb();
     </div>
 </header>
 <section>
-    <form action='addForm.php' method='post'>
+    <form action='processForm.php' method='post'>
         <h2>Add Shinkansen</h2>
         <div>
             <label>Series </label>

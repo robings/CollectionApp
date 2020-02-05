@@ -42,3 +42,29 @@ function displayTrains(array $shinkansens): string {
     }
     return $trains;
 }
+
+function validateString($string) {
+    //examine string, return true or false
+}
+
+function validateSpeed($speed) {
+    if (preg_match('/^\d{1,3}$/', $speed)) {
+        return true;
+    }
+    return false;
+}
+
+function validateYear($year) {
+    if (preg_match('/^[0-9]{4}$/', $year)) {
+        return true;
+    }
+    return false;
+}
+
+function validateUrl($url) {
+    //check to see if the file being referenced exists, return true or false
+}
+
+function addTraintoDb($shinkansen) {
+    //bind params, then insert into db
+}

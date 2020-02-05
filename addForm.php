@@ -28,6 +28,10 @@ $db = connectdb();
     <form action='addForm.php' method='post'>
         <h2>Add Shinkansen</h2>
         <div>
+            <label>Series </label>
+            <input type='text' name='series' size='10' maxlength='20' pattern='[a-zA-Z0-9]+' required />
+        </div>
+        <div>
         <label>Top speed (km/h) </label>
         <input type='text' name='topSpeedKmh' size='5' maxlength='3' pattern='^\d{1,3}$' required />
         </div>

@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.29)
 # Database: robin_collection_shinkansen
-# Generation Time: 2020-02-05 09:05:39 +0000
+# Generation Time: 2020-02-05 09:27:57 +0000
 # ************************************************************
 
 
@@ -33,7 +33,7 @@ CREATE TABLE `shinkansens` (
   `introducedYr` year(4) NOT NULL,
   `withdrawn` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `withdrawnYr` year(4) DEFAULT NULL,
-  `imgUrl` varchar(500) DEFAULT NULL,
+  `imgUrl` varchar(500) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

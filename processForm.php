@@ -14,26 +14,35 @@ if (!isset($_POST['series'])) {
 echo 'there is post data';
 echo '<br />';
 
-if (validateSpeed($_POST['topSpeedKmh'])) {
+if (validateStringOnlyAlphaNumeric(trim($_POST['series']))) {
+    echo 'Valid series';
+} else {
+    echo 'invalid series';
+}
+echo '<br />';
+
+if (validateSpeed(trim($_POST['topSpeedKmh']))) {
     echo 'Valid km/h';
 } else {
     echo 'invalid km/h';
 }
 echo '<br />';
 
-if (validateYear($_POST['introYr'])) {
+if (validateYear(trim($_POST['introYr']))) {
     echo 'Valid year';
 } else {
     echo 'invalid year';
 }
 echo '<br />';
 
+if (validateUrl(trim($_POST['imgUrl']))) {
+    echo 'validUrl';
+} else {
+    echo 'invalid url';
+}
+echo '<br />';
 
 
-//pull data from form
-
-//validate each piece of data in turn
-//if there are messages, add to $_SESSION
 
 
 

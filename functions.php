@@ -43,26 +43,32 @@ function displayTrains(array $shinkansens): string {
     return $trains;
 }
 
-function validateString($string) {
-    //examine string, return true or false
+function validateStringOnlyAlphaNumeric(string $string): bool {
+    if (preg_match('/^[a-zA-Z0-9]*$/', $string)) {
+        return true;
+    }
+    return false;
 }
 
-function validateSpeed($speed) {
+function validateSpeed(int $speed): bool {
     if (preg_match('/^\d{1,3}$/', $speed)) {
         return true;
     }
     return false;
 }
 
-function validateYear($year) {
+function validateYear(int $year): bool {
     if (preg_match('/^[0-9]{4}$/', $year)) {
         return true;
     }
     return false;
 }
 
-function validateUrl($url) {
-    //check to see if the file being referenced exists, return true or false
+function validateUrl(string $url): bool {
+    if (file_exists($url)) {
+        return true;
+    }
+    return false;
 }
 
 function addTraintoDb($shinkansen) {

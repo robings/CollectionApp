@@ -29,23 +29,23 @@ $db = connectdb();
         <h2>Add Shinkansen</h2>
         <div>
             <label>Series </label>
-            <input type='text' name='series' size='10' maxlength='20' pattern='[a-zA-Z0-9]+' required />
+            <input type='text' name='series' size='10' maxlength='20' required />
         </div>
         <div>
         <label>Top speed (km/h) </label>
-        <input type='text' name='topSpeedKmh' size='5' maxlength='3' pattern='^\d{1,3}$' required />
+        <input type='text' name='topSpeedKmh' size='5' maxlength='3' required />
         </div>
         <div>
         <label>Top speed (mph) </label>
-        <input type='text' name='topSpeedMph' size='5' maxlength='3' pattern='^\d{1,3}$' required />
+        <input type='text' name='topSpeedMph' size='5' maxlength='3' required />
         </div>
         <div>
         <label>Year introduced </label>
-        <input type='text' name='introYr' size='5' maxlength='4' pattern='^\d{1,4}$' required />
+        <input type='text' name='introYr' size='5' maxlength='4' required />
         </div>
         <div>
         <label>Year withdrawn </label>
-        <input type='text' name='withdrawnYr' size='5' maxlength='4' pattern='^\d{1,4}$' />
+        <input type='text' name='withdrawnYr' size='5' maxlength='4' />
         <label>(leave blank if still in service)</label>
         </div>
         <div>

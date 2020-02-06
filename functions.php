@@ -72,7 +72,7 @@ function validateSpeed(string $speed): int {
     if (preg_match('/^\d{1,3}$/', $speed)) {
         return $speed;
     }
-    return -1;
+    return 0;
 }
 
 /**
@@ -85,11 +85,11 @@ function validateSpeed(string $speed): int {
 function validateYear(string $year): int {
     $year = trim($year);
     if ($year < 1901) {
-        return -1;
+        return 0;
     } elseif (preg_match('/^\d{4}$/', $year)) {
         return $year;
     }
-    return -1;
+    return 0;
 }
 
 /**

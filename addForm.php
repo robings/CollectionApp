@@ -7,9 +7,6 @@ $db = connectdb();
 
 session_start();
 
-//process if there are messages, repopulate form if $_POST exists
-
-
 ?>
 
 <!DOCTYPE html>

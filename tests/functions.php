@@ -84,7 +84,7 @@ class FunctionTests extends TestCase
     }
 
     public function testValidateSpeedFailure() {
-        $expected = -1;
+        $expected = 0;
         $input = "`E`";
 
         $case = validateSpeed($input);
@@ -108,7 +108,7 @@ class FunctionTests extends TestCase
     }
 
     public function testValidateYearFailure() {
-        $expected = -1;
+        $expected = 0;
         $input = "&//*";
 
         $case = validateYear($input);

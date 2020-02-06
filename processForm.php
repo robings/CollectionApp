@@ -15,7 +15,7 @@ $series = $_POST['series'];
 $topKph = $_POST['topSpeedKmh'];
 $topMph = $_POST['topSpeedMph'];
 $introYr = $_POST['introYr'];
-$withdrawn = $_POST['withdrawnYr'];
+$withdrawnYr = $_POST['withdrawnYr'];
 $imgUrl = $_POST['imgUrl'];
 
 $errorMessage = '';
@@ -38,7 +38,7 @@ if (validateYear($introYr) == -1) {
     $errorMessage .=  'invalid intro year<br />';
 }
 
-if ($withdrawn != NULL) {
+if ($withdrawnYr != NULL) {
     if (validateYear($withdrawn) == -1) {
         $errorMessage .=  'invalid withdrawn year<br />';
     }
@@ -48,11 +48,16 @@ if (validateUrl($imgUrl) == 'error') {
     $errorMessage .=  'invalidUrl<br />';
 }
 
-//echo $errorMessage;
-
-//finally send back to either index.php if success or to form page if not
 if ($errorMessage !='') {
     header('Location: addForm.php');
 }
 
-//echo 'success';
+//build an array
+$shinkansen = [ $series, $topKph, $topMph, $introYr, $withdrawnYr, $imgUrl ];
+
+
+//call function to put stuff in the db
+addTraintoDb($shinkansen);
+
+
+//return to index page

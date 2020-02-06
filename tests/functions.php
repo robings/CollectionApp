@@ -49,4 +49,108 @@ class FunctionTests extends TestCase
         $input = 'tee hee hee';
         $case = displayTrains($input);
     }
+
+    //tests for validateStringOnlyAlphaNumeric
+    public function testValidateStringOnlyAlphaNumericSuccess() {
+        $expected = "N700";
+        $input = "N700";
+
+        $case = validateStringOnlyAlphaNumeric($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateStringOnlyAlphaNumericFailure() {
+        $expected = "error";
+        $input = "N700//";
+
+        $case = validateStringOnlyAlphaNumeric($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateStringOnlyAlphaNumericMalformed() {
+        $this->expectException(TypeError::class);
+        $input = [];
+
+        $case = validateStringOnlyAlphaNumeric($input);
+    }
+
+    //tests for validateSpeed
+    public function testValidateSpeedSuccess() {
+        $expected = 300;
+        $input = "300";
+
+        $case = validateSpeed($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateSpeedFailure() {
+        $expected = 0;
+        $input = "`E`";
+
+        $case = validateSpeed($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateSpeedMalformed() {
+        $this->expectException(TypeError::class);
+        $input = [];
+
+        $case = validateSpeed($input);
+    }
+
+    //tests for validateYear
+    public function testValidateYearSuccess() {
+        $expected = 2007;
+        $input = "2007";
+
+        $case = validateYear($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateYearFailure() {
+        $expected = 0;
+        $input = "&//*";
+
+        $case = validateYear($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateYearMalformed() {
+        $this->expectException(TypeError::class);
+        $input = [];
+
+        $case = validateYear($input);
+    }
+
+    //tests for validateURL
+    public function testValidateUrlSuccess() {
+        $expected = '../images/japan-974730_1920.jpg';
+        $input = '../images/japan-974730_1920.jpg';
+
+        $case = validateUrl($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateUrlSuccessSpace() {
+        $expected = '../images/japan-974730_1920.jpg';
+        $input = ' ../images/japan-974730_1920.jpg';
+
+        $case = validateUrl($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateUrlFailure() {
+        $expected = 'error';
+        $input = '../images/&``japan-974730_1920.jpg';
+
+        $case = validateUrl($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateUrlMalformed() {
+        $this->expectException(TypeError::class);
+        $input = [];
+
+        $case = validateUrl($input);
+    }
 }

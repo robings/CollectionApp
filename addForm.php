@@ -32,7 +32,7 @@ session_start();
         <div>
             <label>Series </label>
             <input type='text' name='series' size='10' maxlength='20' required />
-            <label>(alphanumeric)</label>
+            <label>(letters &amp; numbers only, no spaces)</label>
         </div>
         <div>
             <label>Top speed (km/h) </label>
@@ -42,17 +42,17 @@ session_start();
         <div>
             <label>Top speed (mph) </label>
             <input type='text' name='topSpeedMph' size='5' maxlength='3' required />
-            <label>(only after 1901)</label>
+            <label>(numbers only)</label>
         </div>
         <div>
             <label>Year introduced </label>
             <input type='text' name='introYr' size='5' maxlength='4' required />
-            <label>(only after 1901)</label>
+            <label>(after 1901)</label>
         </div>
         <div>
             <label>Year withdrawn </label>
             <input type='text' name='withdrawnYr' size='5' maxlength='4' />
-            <label>(leave blank if still in service)</label>
+            <label>(after 1901, leave blank if still in service)</label>
         </div>
         <div>
             <label>Img url </label>

@@ -50,7 +50,7 @@ function displayTrains(array $shinkansens): string {
  *
  * @return string - the trimmed string, or 'error'
  */
-function validateStringOnlyAlphaNumeric($string): string {
+function validateStringOnlyAlphaNumeric(string $string): string {
     trim($string);
     if (!(strlen($string) >0 && strlen($string) <20)) {
         return 'error';
@@ -67,7 +67,7 @@ function validateStringOnlyAlphaNumeric($string): string {
  *
  * @return int - trimmed speed, or -1 to indicate error
  */
-function validateSpeed($speed): int {
+function validateSpeed(string $speed): int {
     trim($speed);
     if (preg_match('/^\d{1,3}$/', $speed)) {
         return $speed;
@@ -82,7 +82,7 @@ function validateSpeed($speed): int {
  *
  * @return int - the trimmed year or -1 to indicate error
  */
-function validateYear($year): int {
+function validateYear(string $year): int {
     trim($year);
     if (preg_match('/^\d{4}$/', $year)) {
         return $year;

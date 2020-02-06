@@ -41,12 +41,16 @@ if (validateYear($introYr) == -1) {
 if ($withdrawnYr != NULL) {
     if (validateYear($withdrawnYr) == -1) {
         $errorMessage .=  'invalid withdrawn year<br />';
+    } elseif ($withdrawnYr < $introYr) {
+        $errorMessage .= 'withdrawn year cannot be before introduced year<br />';
     }
 }
 
 if (validateUrl($imgUrl) == 'error') {
     $errorMessage .=  'invalidUrl<br />';
 }
+
+
 
 if ($errorMessage !='') {
     if (isset($_SESSION)) {

@@ -42,3 +42,102 @@ function displayTrains(array $shinkansens): string {
     }
     return $trains;
 }
+
+/**
+ * function to sanitise and validate a string you want to be only alphanumeric
+ *
+ * @param $string - the string to sanitise
+ *
+ * @return string - the trimmed string, or 'error'
+ */
+function validateStringOnlyAlphaNumeric(string $string): string {
+    $string =trim($string);
+    if (!(strlen($string) >0 && strlen($string) <20)) {
+        return 'error';
+    } elseif (preg_match('/^[a-zA-Z0-9]*$/', $string)) {
+        return $string;
+    }
+    return 'error';
+}
+
+/**
+ * function to validate speed fields - checks if a 1-3 digit integer has been entered
+ *
+ * @param $speed - the speed entered
+ *
+ * @return int - trimmed speed, or -1 to indicate error
+ */
+function validateSpeed(string $speed): int {
+    $speed = trim($speed);
+    if (preg_match('/^\d{1,3}$/', $speed)) {
+        return $speed;
+    }
+    return -1;
+}
+
+/**
+ * function to validate year fields - checks if a 4 digit integer has been entered
+ *
+ * @param $year - the year as entered
+ *
+ * @return int - the trimmed year or -1 to indicate error
+ */
+function validateYear(string $year): int {
+    $year = trim($year);
+    if ($year < 1901) {
+        return -1;
+    } elseif (preg_match('/^\d{4}$/', $year)) {
+        return $year;
+    }
+    return -1;
+}
+
+/**
+ * function to validate a url, using Filter_Sanitize_Url
+ *
+ * @param $url - the url as entered
+ *
+ * @return string - the trimmed url, or 'error'
+ */
+function validateUrl(string $url): string {
+    $url = trim($url);
+    if ((strpos($url,'`') !== false) || (strpos($url, '&') !== false) || (strpos($url, '$') !== false)) {
+        return 'error';
+    } elseif (filter_var($url, FILTER_SANITIZE_URL) == false) {
+        return 'error';
+    } elseif (file_exists($url)) {
+        return $url;
+    }
+    return 'error';
+}
+
+/**
+ * function to take input from form and put into DB
+ *
+ * @param PDO $db - the db connection
+ *
+ * @param array $shinkansen - an array of values to ultimately be added to the db
+ *
+ * @return bool a true or false based on whether execution worked
+ */
+function addTraintoDb(PDO $db, array $shinkansen) {
+    $query = $db->prepare('INSERT INTO `shinkansens` (`series`, `topSpeedKmh`, `topSpeedMph`, `introducedYr`, `withdrawn`, `withdrawnYr`, `imgUrl`) VALUES (:series, :speedKmh, :speedMph, :introYr, :withdrawn, :withdrawnYr, :imgUrl)');
+
+    $series = $shinkansen[0];
+    $topKph = $shinkansen[1];
+    $topMph = $shinkansen[2];
+    $introYr = $shinkansen[3];
+    $withdrawn = ($shinkansen[4] != '' ? 1 : 0);
+    $withdrawnYr = ($shinkansen[4] != '' ? $shinkansen[4] : NULL);
+    $imgUrl = $shinkansen[5];
+
+    $query->bindParam(':series', $series);
+    $query->bindParam(':speedKmh', $topKph);
+    $query->bindParam(':speedMph', $topMph);
+    $query->bindParam(':introYr', $introYr);
+    $query->bindParam(':withdrawn', $withdrawn);
+    $query->bindParam(':withdrawnYr', $withdrawnYr);
+    $query->bindParam(':imgUrl', $imgUrl);
+    $result = $query->execute();
+    return $result;
+}

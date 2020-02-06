@@ -131,6 +131,14 @@ class FunctionTests extends TestCase
         $this->assertEquals($expected, $case);
     }
 
+    public function testValidateUrlSuccessSpace() {
+        $expected = '../images/japan-974730_1920.jpg';
+        $input = ' ../images/japan-974730_1920.jpg';
+
+        $case = validateUrl($input);
+        $this->assertEquals($expected, $case);
+    }
+
     public function testValidateUrlFailure() {
         $expected = 'error';
         $input = '../images/&``japan-974730_1920.jpg';

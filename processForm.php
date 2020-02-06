@@ -8,11 +8,9 @@ session_start();
 $db = connectdb();
 
 if (!isset($_POST['series'])) {
-    echo 'no post data';
-    //send this back to the index page instead
+    header ('Location: index.php');
 }
-echo 'there is post data';
-echo '<br />';
+
 $series = $_POST['series'];
 $topKph = $_POST['topSpeedKmh'];
 $topMph = $_POST['topSpeedMph'];
@@ -20,46 +18,41 @@ $introYr = $_POST['introYr'];
 $withdrawn = $_POST['withdrawnYr'];
 $imgUrl = $_POST['imgUrl'];
 
-if (validateStringOnlyAlphaNumeric($series) == 'error') {
-    echo 'invalid series';
-}
+$errorMessage = '';
 
-echo '<br />';
+if (validateStringOnlyAlphaNumeric($series) == 'error') {
+    $errorMessage .= 'invalid series<br />';
+}
 
 if (validateSpeed($topKph) == -1) {
-    echo 'invalid km/h';
+    $errorMessage .= 'invalid km/h<br />';
 }
 
-echo '<br />';
 
 if (validateSpeed($topMph) == -1) {
-    echo 'invalid mph';
+    $errorMessage .=  'invalid mph<br />';
 }
 
-echo '<br />';
 
 if (validateYear($introYr) == -1) {
-    echo 'invalid intro year';
+    $errorMessage .=  'invalid intro year<br />';
 }
-
-echo '<br />';
 
 if ($withdrawn != NULL) {
     if (validateYear($withdrawn) == -1) {
-        echo 'invalid withdrawn year';
+        $errorMessage .=  'invalid withdrawn year<br />';
     }
 }
 
-echo '<br />';
-
 if (validateUrl($imgUrl) == 'error') {
-    echo 'invalidUrl';
+    $errorMessage .=  'invalidUrl<br />';
 }
 
-echo '<br />';
-
-
-
-
+//echo $errorMessage;
 
 //finally send back to either index.php if success or to form page if not
+if ($errorMessage !='') {
+    header('Location: addForm.php');
+}
+
+//echo 'success';

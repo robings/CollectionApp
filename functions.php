@@ -51,7 +51,7 @@ function displayTrains(array $shinkansens): string {
  * @return string - the trimmed string, or 'error'
  */
 function validateStringOnlyAlphaNumeric(string $string): string {
-    trim($string);
+    $string =trim($string);
     if (!(strlen($string) >0 && strlen($string) <20)) {
         return 'error';
     } elseif (preg_match('/^[a-zA-Z0-9]*$/', $string)) {
@@ -68,7 +68,7 @@ function validateStringOnlyAlphaNumeric(string $string): string {
  * @return int - trimmed speed, or -1 to indicate error
  */
 function validateSpeed(string $speed): int {
-    trim($speed);
+    $speed = trim($speed);
     if (preg_match('/^\d{1,3}$/', $speed)) {
         return $speed;
     }
@@ -83,7 +83,7 @@ function validateSpeed(string $speed): int {
  * @return int - the trimmed year or -1 to indicate error
  */
 function validateYear(string $year): int {
-    trim($year);
+    $year = trim($year);
     if (preg_match('/^\d{4}$/', $year)) {
         return $year;
     }
@@ -98,7 +98,7 @@ function validateYear(string $year): int {
  * @return string - the trimmed url, or 'error'
  */
 function validateUrl(string $url): string {
-    trim($url);
+    $url = trim($url);
     if ((strpos($url,'`') !== false) || (strpos($url, '&') !== false) || (strpos($url, '$') !== false)) {
         return 'error';
     } elseif (filter_var($url, FILTER_SANITIZE_URL) == false) {

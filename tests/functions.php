@@ -130,4 +130,19 @@ class FunctionTests extends TestCase
         $case = validateUrl($input);
         $this->assertEquals($expected, $case);
     }
+
+    public function testValidateUrlFailure() {
+        $expected = 'error';
+        $input = '../images/&``japan-974730_1920.jpg';
+
+        $case = validateUrl($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateUrlMalformed() {
+        $this->expectException(TypeError::class);
+        $input = [];
+
+        $case = validateUrl($input);
+    }
 }

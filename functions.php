@@ -97,7 +97,7 @@ function validateYear(string $year): int {
  *
  * @return string - the trimmed url, or 'error'
  */
-function validateUrl($url): string {
+function validateUrl(string $url): string {
     trim($url);
     if ((strpos($url,'`') !== false) || (strpos($url, '&') !== false) || (strpos($url, '$') !== false)) {
         return 'error';

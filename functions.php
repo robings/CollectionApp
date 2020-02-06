@@ -111,6 +111,15 @@ function validateUrl(string $url): string {
     return 'error';
 }
 
+/**
+ * function to take input from form and put into DB
+ *
+ * @param PDO $db - the db connection
+ *
+ * @param array $shinkansen - an array of values to ultimately be added to the db
+ *
+ * @return bool a true or false based on whether execution worked
+ */
 function addTraintoDb(PDO $db, array $shinkansen) {
     $query = $db->prepare('INSERT INTO `shinkansens` (`series`, `topSpeedKmh`, `topSpeedMph`, `introducedYr`, `withdrawn`, `withdrawnYr`, `imgUrl`) VALUES (:series, :speedKmh, :speedMph, :introYr, :withdrawn, :withdrawnYr, :imgUrl)');
 

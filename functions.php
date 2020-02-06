@@ -109,6 +109,26 @@ function validateUrl(string $url): string {
     return 'error';
 }
 
-function addTraintoDb($shinkansen) {
-    //bind params, then insert into db
+function addTraintoDb(PDO $db, array $shinkansen) {
+    $query = $db->prepare ('INSERT INTO `shinkansens` (`series`, `topSpeedKmh`, `topSpeedMph`, `introducedYr`, `withdrawn`, `withdrawnYr`, `imgUrl`) VALUES (:series, :speedKmh, :speedMph, :introYr, :withdrawn, :withdrawnYr, :imgUrl);');
+
+    $series = $shinkansen[0];
+    $topKph = $shinkansen[1];
+    $topMph = $shinkansen[2];
+    $introYr = $shinkansen[3];
+    $shinkansen[4] == NULL? $withdrawn = 0 : $withdrawn = 1;
+    $withdrawnYr = $shinkansen[4];
+    $imgUrl = $shinkansen[5];
+
+    $query->bindParam(':series', $series);
+    $query->bindParam(':speedKmh', $topKph);
+    $query->bindParam(':speedMph', $topMph);
+    $query->bindParam(':introYr', $introYr);
+
+
+
+    $query->bindParam(':withdrawn', $withdrawn);
+    $query->bindParam(':withdrawnYr', $withdrawnYr);
+    $query->bindParam(':imgUrl', $imgUrl);
+    $query->execute();
 }

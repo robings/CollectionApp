@@ -39,7 +39,7 @@ if (validateYear($introYr) == -1) {
 }
 
 if ($withdrawnYr != NULL) {
-    if (validateYear($withdrawn) == -1) {
+    if (validateYear($withdrawnYr) == -1) {
         $errorMessage .=  'invalid withdrawn year<br />';
     }
 }
@@ -57,7 +57,7 @@ $shinkansen = [ $series, $topKph, $topMph, $introYr, $withdrawnYr, $imgUrl ];
 
 
 //call function to put stuff in the db
-addTraintoDb($shinkansen);
-
+addTraintoDb($db, $shinkansen);
 
 //return to index page
+//header('Location: index.php');

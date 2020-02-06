@@ -43,35 +43,70 @@ function displayTrains(array $shinkansens): string {
     return $trains;
 }
 
-function validateStringOnlyAlphaNumeric(string $string): bool {
-    if (preg_match('/^[a-zA-Z0-9]*$/', $string)) {
-        return true;
+/**
+ * function to sanitise and validate a string you want to be only alphanumeric
+ *
+ * @param $string - the string to sanitise
+ *
+ * @return string - the trimmed string, or 'error'
+ */
+function validateStringOnlyAlphaNumeric($string): string {
+    trim($string);
+    if (!(strlen($string) >0 && strlen($string) <20)) {
+        return 'error';
+    } elseif (preg_match('/^[a-zA-Z0-9]*$/', $string)) {
+        return $string;
     }
-    return false;
+    return 'error';
 }
 
-function validateSpeed(int $speed): bool {
+/**
+ * function to validate speed fields - checks if a 1-3 digit integer has been entered
+ *
+ * @param $speed - the speed entered
+ *
+ * @return int - trimmed speed, or -1 to indicate error
+ */
+function validateSpeed($speed): int {
+    trim($speed);
     if (preg_match('/^\d{1,3}$/', $speed)) {
-        return true;
+        return $speed;
     }
-    return false;
+    return -1;
 }
 
-function validateYear(int $year): bool {
-    if (preg_match('/^[0-9]{4}$/', $year)) {
-        return true;
+/**
+ * function to validate year fields - checks if a 4 digit integer has been entered
+ *
+ * @param $year - the year as entered
+ *
+ * @return int - the trimmed year or -1 to indicate error
+ */
+function validateYear($year): int {
+    trim($year);
+    if (preg_match('/^\d{4}$/', $year)) {
+        return $year;
     }
-    return false;
+    return -1;
 }
 
-function validateUrl(string $url): bool {
+/**
+ * function to validate a url, using Filter_Sanitize_Url
+ *
+ * @param $url - the url as entered
+ *
+ * @return string - the trimmed url, or 'error'
+ */
+function validateUrl($url): string {
+    trim($url);
     if ((strpos($url,'`') !== false) || (strpos($url, '&') !== false) || (strpos($url, '$') !== false)) {
-        echo 'exiting due to characters';
-        return false;
+        return 'error';
+    } elseif (filter_var($url, FILTER_SANITIZE_URL) == false) {
+        return 'error';
     } elseif (file_exists($url)) {
-        return true;
+        return $url;
     }
-    return false;
+    return 'error';
 }
 
 function addTraintoDb($shinkansen) {

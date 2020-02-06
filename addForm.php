@@ -5,7 +5,10 @@ require_once 'dbConnect.php';
 
 $db = connectdb();
 
+session_start();
+
 //process if there are messages, repopulate form if $_POST exists
+
 
 ?>
 
@@ -56,6 +59,13 @@ $db = connectdb();
         </div>
         <input type='submit' value='Add' />
     </form>
+
+    <?php
+      if (isset($_SESSION['errorMessage'])) {
+          echo '<article>' . $_SESSION['errorMessage'] . '</article>';
+          unset($_SESSION['errorMessage']);
+      }
+    ?>
 </section>
 
 </body>

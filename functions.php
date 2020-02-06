@@ -84,7 +84,9 @@ function validateSpeed(string $speed): int {
  */
 function validateYear(string $year): int {
     $year = trim($year);
-    if (preg_match('/^\d{4}$/', $year)) {
+    if ($year < 1901) {
+        return -1;
+    } elseif (preg_match('/^\d{4}$/', $year)) {
         return $year;
     }
     return -1;
@@ -110,25 +112,23 @@ function validateUrl(string $url): string {
 }
 
 function addTraintoDb(PDO $db, array $shinkansen) {
-    $query = $db->prepare ('INSERT INTO `shinkansens` (`series`, `topSpeedKmh`, `topSpeedMph`, `introducedYr`, `withdrawn`, `withdrawnYr`, `imgUrl`) VALUES (:series, :speedKmh, :speedMph, :introYr, :withdrawn, :withdrawnYr, :imgUrl);');
+    $query = $db->prepare('INSERT INTO `shinkansens` (`series`, `topSpeedKmh`, `topSpeedMph`, `introducedYr`, `withdrawn`, `withdrawnYr`, `imgUrl`) VALUES (:series, :speedKmh, :speedMph, :introYr, :withdrawn, :withdrawnYr, :imgUrl)');
 
     $series = $shinkansen[0];
     $topKph = $shinkansen[1];
     $topMph = $shinkansen[2];
     $introYr = $shinkansen[3];
-    $shinkansen[4] == NULL? $withdrawn = 0 : $withdrawn = 1;
-    $withdrawnYr = $shinkansen[4];
+    $withdrawn = ($shinkansen[4] != '' ? 1 : 0);
+    $withdrawnYr = ($shinkansen[4] != '' ? $shinkansen[4] : NULL);
     $imgUrl = $shinkansen[5];
 
     $query->bindParam(':series', $series);
     $query->bindParam(':speedKmh', $topKph);
     $query->bindParam(':speedMph', $topMph);
     $query->bindParam(':introYr', $introYr);
-
-
-
     $query->bindParam(':withdrawn', $withdrawn);
     $query->bindParam(':withdrawnYr', $withdrawnYr);
     $query->bindParam(':imgUrl', $imgUrl);
-    $query->execute();
+    $result = $query->execute();
+    return $result;
 }

@@ -49,15 +49,14 @@ if (validateUrl($imgUrl) == 'error') {
 }
 
 if ($errorMessage !='') {
+    if (isset($_SESSION)) {
+        $_SESSION['errorMessage'] = $errorMessage;
+    }
     header('Location: addForm.php');
 }
 
-//build an array
 $shinkansen = [ $series, $topKph, $topMph, $introYr, $withdrawnYr, $imgUrl ];
 
-
-//call function to put stuff in the db
 addTraintoDb($db, $shinkansen);
 
-//return to index page
-//header('Location: index.php');
+header('Location: index.php');

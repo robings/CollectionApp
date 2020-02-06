@@ -53,6 +53,7 @@ if ($errorMessage !='') {
         $_SESSION['errorMessage'] = $errorMessage;
     }
     header('Location: addForm.php');
+    exit;
 }
 
 $shinkansen = [ $series, $topKph, $topMph, $introYr, $withdrawnYr, $imgUrl ];

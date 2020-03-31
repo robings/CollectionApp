@@ -56,7 +56,7 @@ session_start();
         </div>
         <div>
             <label>Img url </label>
-            <input type='text' name='imgUrl' size='30' maxlength='500' required />
+            <input type='text' name='imgUrl' size='30' maxlength='500' value='images/shinkansen.jpg' required />
             <label>(must be an existing file)</label>
         </div>
         <input type='submit' value='Add' />

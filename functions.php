@@ -22,6 +22,9 @@ function getAllTrains(PDO $db): array {
  */
 function displayTrains(array $shinkansens): string {
         $trains = '';
+        if (count($shinkansens) == 0) {
+            return 'No bullet trains in collection';
+        }
     foreach($shinkansens as $shinkansen) {
         if (!array_key_exists('series', $shinkansen) || (!array_key_exists('imgUrl', $shinkansen)) || (!array_key_exists('introducedYr', $shinkansen))) {
             return 'error! missing expected array key(s): function collectionBox';

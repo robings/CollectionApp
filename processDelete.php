@@ -15,14 +15,14 @@ $idToDelete = $_POST['delete'];
 $errorMessage = '';
 
 if (validateId($idToDelete) == 0) {
-    $errorMessage .= 'invalid id<br />';
+    $errorMessage .= 'Invalid id - unable to delete<br />';
 }
 
 if ($errorMessage !='') {
     if (isset($_SESSION)) {
         $_SESSION['errorMessage'] = $errorMessage;
     }
-    header('Location: addForm.php');
+    header('Location: index.php');
     exit;
 }
 

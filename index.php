@@ -3,6 +3,9 @@
 require_once 'functions.php';
 require_once 'dbConnect.php';
 
+session_start();
+
+
 $db = connectdb();
 
 $shinkansens = getAllTrains($db);
@@ -30,7 +33,13 @@ $trains = displayTrains($shinkansens);
     </div>
 </header>
 <section class='collection'>
-    <?php echo $trains; ?>
+    <?php
+    if (isset($_SESSION['errorMessage'])) {
+        echo '<article>' . $_SESSION['errorMessage'] . '</article>';
+        unset($_SESSION['errorMessage']);
+    }
+
+    echo $trains; ?>
 </section>
 
 </body>

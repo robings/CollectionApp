@@ -115,6 +115,14 @@ function validateUrl(string $url): string {
     return 'error';
 }
 
+function validateId(string $id): int {
+    $id = trim($id);
+    if (preg_match('/^\d{1,11}$/', $id)) {
+        return $id;
+    }
+    return 0;
+}
+
 /**
  * function to take input from form and put into DB
  *
@@ -144,4 +152,10 @@ function addTraintoDb(PDO $db, array $shinkansen) {
     $query->bindParam(':imgUrl', $imgUrl);
     $result = $query->execute();
     return $result;
+}
+
+function deleteTrainFromDb (PDO $db, int $idToDelete) {
+    $query = $db->prepare('');
+
+    $query->bindParam(':id', $idToDelete);
 }

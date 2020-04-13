@@ -29,6 +29,8 @@ function displayTrains(array $shinkansens): string {
             return 'error! missing expected array key(s): function collectionBox';
         } elseif (!array_key_exists('withdrawnYr', $shinkansen)) {
             return 'error! missing expected array key(s): function collectionBox';
+        } elseif (!array_key_exists('id', $shinkansen)) {
+            return 'error! missing expected array key(s): function collectionBox';
         }
         $shinkansenBox = '<article><div class=\'item\'>';
         $shinkansenBox .= '<h2>Series ' . $shinkansen['series'] . '</h2>';
@@ -37,7 +39,9 @@ function displayTrains(array $shinkansens): string {
         $shinkansenBox .= '<li><span>Introduced:</span> ' . $shinkansen['introducedYr'] . '</li>';
         $shinkansenBox .= '<li><span>Top speed:</span> ' . $shinkansen['topSpeedKmh'] . 'km/h (' . $shinkansen['topSpeedMph'] . 'mph)</li>';
         $shinkansenBox .= '<li><span>Withdrawn:</span> ' . ($shinkansen['withdrawn'] == 1 ? $shinkansen['withdrawnYr'] : 'still in service') . '</li>';
-        $shinkansenBox .= '</ul></div></article>';
+        $shinkansenBox .= '</ul>';
+        $shinkansenBox .= '<form action=\'processDelete.php\' method=\'post\'><input type=\'text\' name=\'delete\' hidden value=\'' . $shinkansen['id'] . '\' /><input type=\'submit\' value=\'Delete\' /></form>';
+        $shinkansenBox .= '</div></article>';
         $trains .= $shinkansenBox;
     }
     return $trains;

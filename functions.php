@@ -155,7 +155,9 @@ function addTraintoDb(PDO $db, array $shinkansen) {
 }
 
 function deleteTrainFromDb (PDO $db, int $idToDelete) {
-    $query = $db->prepare('');
+    $query = $db->prepare('UPDATE `shinkansens` SET `deleted` = 1 WHERE `id` = :id;');
 
     $query->bindParam(':id', $idToDelete);
+    $result = $query->execute();
+    return $result;
 }

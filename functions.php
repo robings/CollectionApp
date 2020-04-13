@@ -69,7 +69,7 @@ function validateStringOnlyAlphaNumeric(string $string): string {
  *
  * @param $speed - the speed entered
  *
- * @return int - trimmed speed, or -1 to indicate error
+ * @return int - trimmed speed, or 0 to indicate error
  */
 function validateSpeed(string $speed): int {
     $speed = trim($speed);
@@ -84,7 +84,7 @@ function validateSpeed(string $speed): int {
  *
  * @param $year - the year as entered
  *
- * @return int - the trimmed year or -1 to indicate error
+ * @return int - the trimmed year or 0 to indicate error
  */
 function validateYear(string $year): int {
     $year = trim($year);
@@ -115,6 +115,13 @@ function validateUrl(string $url): string {
     return 'error';
 }
 
+/**
+ * function to validate id
+ *
+ * @param string $id - the id sent from the delete button
+ *
+ * @return int - the id or 0 to indicate error
+ */
 function validateId(string $id): int {
     $id = trim($id);
     if (preg_match('/^\d{1,11}$/', $id)) {
@@ -154,6 +161,15 @@ function addTraintoDb(PDO $db, array $shinkansen) {
     return $result;
 }
 
+/**
+ * function to perform soft delete in DB
+ *
+ * @param PDO $db - the db connection
+ *
+ * @param int $idToDelete - the id from the delete button
+ *
+ * @return bool - a true or false based on whether execution worked
+ */
 function deleteTrainFromDb (PDO $db, int $idToDelete) {
     $query = $db->prepare('UPDATE `shinkansens` SET `deleted` = 1 WHERE `id` = :id;');
 

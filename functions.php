@@ -8,7 +8,7 @@
  * @return array - the data from the database in a assoc array
  */
 function getAllTrains(PDO $db): array {
-    $query = $db->prepare('SELECT `id`, `series`, `introducedYr`, `topSpeedKmh`, `topSpeedMph`, `withdrawn`, `withdrawnYr`, `imgUrl` FROM `shinkansens`;');
+    $query = $db->prepare('SELECT `id`, `series`, `introducedYr`, `topSpeedKmh`, `topSpeedMph`, `withdrawn`, `withdrawnYr`, `imgUrl` FROM `shinkansens` WHERE `deleted` = \'0\';');
     $query->execute();
     return $query->fetchAll();
 }

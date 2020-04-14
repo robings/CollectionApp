@@ -102,6 +102,7 @@ input {
 
 input[type=submit] {
     color: #254378;
+    background-color: #FFFFFF;
     padding: 5px 20px 5px 10px;
     border-bottom: 3px solid #254378;
 }

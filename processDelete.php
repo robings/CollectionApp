@@ -3,7 +3,7 @@
 require_once 'functions.php';
 require_once 'dbConnect.php';
 
-if (!isset($_POST['delete'])) {
+if (!isset($_GET['delete'])) {
     header ('Location: index.php');
 }
 
@@ -11,7 +11,7 @@ session_start();
 
 $db = connectdb();
 
-$idToDelete = $_POST['delete'];
+$idToDelete = $_GET['delete'];
 $errorMessage = '';
 
 if (validateId($idToDelete) == 0) {

@@ -43,7 +43,7 @@ function displayTrains(array $shinkansens): string {
         $shinkansenBox .= '<li><span>Top speed:</span> ' . $shinkansen['topSpeedKmh'] . 'km/h (' . $shinkansen['topSpeedMph'] . 'mph)</li>';
         $shinkansenBox .= '<li><span>Withdrawn:</span> ' . ($shinkansen['withdrawn'] == 1 ? $shinkansen['withdrawnYr'] : 'still in service') . '</li>';
         $shinkansenBox .= '</ul>';
-        $shinkansenBox .= '<form action=\'processDelete.php\' method=\'post\'><input type=\'text\' name=\'delete\' hidden value=\'' . $shinkansen['id'] . '\' /><input type=\'submit\' value=\'Delete\' /></form>';
+        $shinkansenBox .= '<form action=\'processDelete.php\' method=\'delete\'><input type=\'text\' name=\'delete\' hidden value=\'' . $shinkansen['id'] . '\' /><input type=\'submit\' value=\'Delete\' /></form>';
         $shinkansenBox .= '</div></article>';
         $trains .= $shinkansenBox;
     }

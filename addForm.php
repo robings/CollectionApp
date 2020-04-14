@@ -27,7 +27,7 @@ session_start();
     </div>
 </header>
 <section>
-    <form action='processForm.php' method='post'>
+    <form class='add' action='processForm.php' method='post'>
         <h2>Add Shinkansen</h2>
         <div>
             <label>Series </label>

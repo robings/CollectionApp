@@ -153,4 +153,28 @@ class FunctionTests extends TestCase
 
         $case = validateUrl($input);
     }
+
+    //tests for validateId
+    public function testValidateIdSuccess() {
+        $expected = 2;
+        $input = "2";
+
+        $case = validateId($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateIdFailure() {
+        $expected = 0;
+        $input = "hi";
+
+        $case = validateId($input);
+        $this->assertEquals($expected, $case);
+    }
+
+    public function testValidateIdMalformed() {
+        $this->expectException(TypeError::class);
+        $input = [];
+
+        $case = validateId($input);
+    }
 }

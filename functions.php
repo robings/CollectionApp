@@ -8,7 +8,7 @@
  * @return array - the data from the database in a assoc array
  */
 function getAllTrains(PDO $db): array {
-    $query = $db->prepare('SELECT `id`, `series`, `introducedYr`, `topSpeedKmh`, `topSpeedMph`, `withdrawn`, `withdrawnYr`, `imgUrl` FROM `shinkansens`;');
+    $query = $db->prepare('SELECT `id`, `series`, `introducedYr`, `topSpeedKmh`, `topSpeedMph`, `withdrawn`, `withdrawnYr`, `imgUrl` FROM `shinkansens` WHERE `deleted` = \'0\';');
     $query->execute();
     return $query->fetchAll();
 }
@@ -22,12 +22,17 @@ function getAllTrains(PDO $db): array {
  */
 function displayTrains(array $shinkansens): string {
         $trains = '';
+        if (count($shinkansens) == 0) {
+            return 'No bullet trains in collection';
+        }
     foreach($shinkansens as $shinkansen) {
         if (!array_key_exists('series', $shinkansen) || (!array_key_exists('imgUrl', $shinkansen)) || (!array_key_exists('introducedYr', $shinkansen))) {
             return 'error! missing expected array key(s): function collectionBox';
         } elseif (!array_key_exists('topSpeedKmh', $shinkansen) || (!array_key_exists('topSpeedMph', $shinkansen)) || (!array_key_exists('withdrawn', $shinkansen))) {
             return 'error! missing expected array key(s): function collectionBox';
         } elseif (!array_key_exists('withdrawnYr', $shinkansen)) {
+            return 'error! missing expected array key(s): function collectionBox';
+        } elseif (!array_key_exists('id', $shinkansen)) {
             return 'error! missing expected array key(s): function collectionBox';
         }
         $shinkansenBox = '<article><div class=\'item\'>';
@@ -37,7 +42,9 @@ function displayTrains(array $shinkansens): string {
         $shinkansenBox .= '<li><span>Introduced:</span> ' . $shinkansen['introducedYr'] . '</li>';
         $shinkansenBox .= '<li><span>Top speed:</span> ' . $shinkansen['topSpeedKmh'] . 'km/h (' . $shinkansen['topSpeedMph'] . 'mph)</li>';
         $shinkansenBox .= '<li><span>Withdrawn:</span> ' . ($shinkansen['withdrawn'] == 1 ? $shinkansen['withdrawnYr'] : 'still in service') . '</li>';
-        $shinkansenBox .= '</ul></div></article>';
+        $shinkansenBox .= '</ul>';
+        $shinkansenBox .= '<form action=\'processDelete.php\' method=\'post\'><input type=\'text\' name=\'delete\' hidden value=\'' . $shinkansen['id'] . '\' /><input type=\'submit\' value=\'Delete\' /></form>';
+        $shinkansenBox .= '</div></article>';
         $trains .= $shinkansenBox;
     }
     return $trains;
@@ -65,7 +72,7 @@ function validateStringOnlyAlphaNumeric(string $string): string {
  *
  * @param $speed - the speed entered
  *
- * @return int - trimmed speed, or -1 to indicate error
+ * @return int - trimmed speed, or 0 to indicate error
  */
 function validateSpeed(string $speed): int {
     $speed = trim($speed);
@@ -80,7 +87,7 @@ function validateSpeed(string $speed): int {
  *
  * @param $year - the year as entered
  *
- * @return int - the trimmed year or -1 to indicate error
+ * @return int - the trimmed year or 0 to indicate error
  */
 function validateYear(string $year): int {
     $year = trim($year);
@@ -112,6 +119,21 @@ function validateUrl(string $url): string {
 }
 
 /**
+ * function to validate id
+ *
+ * @param string $id - the id sent from the delete button
+ *
+ * @return int - the id or 0 to indicate error
+ */
+function validateId(string $id): int {
+    $id = trim($id);
+    if (preg_match('/^\d{1,11}$/', $id)) {
+        return $id;
+    }
+    return 0;
+}
+
+/**
  * function to take input from form and put into DB
  *
  * @param PDO $db - the db connection
@@ -138,6 +160,23 @@ function addTraintoDb(PDO $db, array $shinkansen) {
     $query->bindParam(':withdrawn', $withdrawn);
     $query->bindParam(':withdrawnYr', $withdrawnYr);
     $query->bindParam(':imgUrl', $imgUrl);
+    $result = $query->execute();
+    return $result;
+}
+
+/**
+ * function to perform soft delete in DB
+ *
+ * @param PDO $db - the db connection
+ *
+ * @param int $idToDelete - the id from the delete button
+ *
+ * @return bool - a true or false based on whether execution worked
+ */
+function deleteTrainFromDb (PDO $db, int $idToDelete) {
+    $query = $db->prepare('UPDATE `shinkansens` SET `deleted` = 1 WHERE `id` = :id;');
+
+    $query->bindParam(':id', $idToDelete);
     $result = $query->execute();
     return $result;
 }

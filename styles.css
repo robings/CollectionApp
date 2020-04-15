@@ -54,6 +54,10 @@ header a {
     float: right;
 }
 
+header a:hover {
+    background-color: #FAF62E;
+}
+
 article {
     border-bottom: 1px solid #999999;
     padding: 20px 10px;
@@ -72,10 +76,10 @@ article {
     border: 1px solid #254378;
     float: left;
     margin-right: 40px;
+    margin-bottom: 10px;
 }
 
 .collection ul {
-    float: left;
     padding: 0;
     font-size: 1.5rem;
 }
@@ -84,7 +88,7 @@ span {
     color: #254378;
 }
 
-form {
+form.add {
     width: 80%;
     margin: 0 auto;
 }
@@ -98,8 +102,15 @@ input {
 
 input[type=submit] {
     color: #254378;
+    background-color: #FFFFFF;
     padding: 5px 20px 5px 10px;
     border-bottom: 3px solid #254378;
+    float: right;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+    background-color: #FAF62E
 }
 
 input + label {
